@@ -15,14 +15,14 @@ module haiku::voting_system {
     const STATUS_NOT_STARTED: u8 = 0;
 
     public struct VotingSystem has key {
-        id: object::UID,
-        admin: address,
-        status: u8,
-        start_time: u64,
-        end_time: u64,
-        total_options: u8,
-        voter_count: u64,
-        ballot_box: object::UID, // 存储选票的动态字段容器
+        id: object::UID,                    // 投票系統的唯一標識符
+        admin: address,                     // 管理員地址,具有管理權限
+        status: u8,                         // 投票系統當前狀態(0:未開始)
+        start_time: u64,                    // 投票開始時間戳
+        end_time: u64,                      // 投票結束時間戳
+        total_options: u8,                  // 可選項總數
+        voter_count: u64,                   // 已投票人數統計
+        ballot_box: object::UID,            // 存儲選票的動態字段容器
     }
 
     public struct Ballot has key, store {
@@ -187,5 +187,10 @@ module haiku::voting_system {
     // 获取投票人数
     public fun get_voter_count(voting_system: &VotingSystem): u64 {
         voting_system.voter_count
+    }
+
+    #[test_only]
+    public fun test_initialize(ctx: &mut TxContext) {
+        haiku::voting_system::initialize_voting(1,1,1,ctx);
     }
 }

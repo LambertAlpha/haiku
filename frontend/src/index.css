@@ -1,0 +1,11 @@
+.my-connect-button * {
+  background-color: #151C2E !important;
+  color: white !important;
+}
+
+.Box1 {
+    position: absolute;
+    top: 200px;    /* 距離頂部 100px */
+    left: 400px;   /* 距離右側 50px */
+    /* height: 80vh;  // 若要整頁垂直置中可加這行 */
+  }
